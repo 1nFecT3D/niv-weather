@@ -1,0 +1,20 @@
+<div class="techs-container">
+  <div class="techs">
+    <div class="spinner" ng-if="loading">
+      <img src="https://loading.io/spinners/dual-ring/lg.dual-ring-loader.gif" alt="">
+    </div>
+    <div class="chooseGender" ng-show="!loading">
+      <a ng-click="updateWeather()"><img class="title-logo" src="http://www.psdgraphics.com/file/male-gender-sign.jpg" /></a>
+      <a ng-click="updateWeather(22)"><img class="title-logo" src="http://ak5.picdn.net/shutterstock/videos/7183585/thumb/1.jpg" /></a>
+    </div>
+    <div ng-repeat="tech in $ctrl.techs | orderBy: 'idealTemp'" tech="tech" ng-class="{techFirst:$first}">
+      <div ng-class="{tech}">
+        <h3 class="tech-h3">
+          {{ tech.name }}
+        </h3>
+        <p>Temprature: {{tech.main.temp }} &#8451;</p>
+        <p>Humidity: {{tech.main.humidity }}%</p>
+      </div>
+    </div>
+  </div>
+</div>
