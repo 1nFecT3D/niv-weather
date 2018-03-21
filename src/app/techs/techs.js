@@ -22,7 +22,7 @@ class TechsController {
   }
   fetchData($scope) {
     this.$http
-      .get('http://api.openweathermap.org/data/2.5/box/city?bbox=-85,180,85,-180,8&appid=7fa7394eb12864ccf726512e191e10d9')
+      .get('https://api.openweathermap.org/data/2.5/box/city?bbox=-85,180,85,-180,8&appid=7fa7394eb12864ccf726512e191e10d9')
       .then(response => {
         const cities = response.data.list;
         this.techs = this.sortData(cities);
