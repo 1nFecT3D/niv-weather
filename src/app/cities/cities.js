@@ -1,6 +1,6 @@
 class citiesController {
   /** @ngInject */
-  constructor($http, $window, $scope) {
+  constructor($http, $window, $scope, $document) {
     $scope.loading = true;
     this.$http = $http;
     this._ = $window._;
@@ -12,11 +12,10 @@ class citiesController {
     };
     this.fetchData($scope);
     $scope.updateWeather = value => {
-      $scope.loading = true;
       this.idealTemp = value;
       this.idealTempRank = (value === 21) ? {21: 1, 22: 2} : {21: 2, 22: 1};
       this.cities = this.sortData(this.cities);
-      $scope.loading = false;
+      $document[0].querySelector('.cities').scrollTop = 0;
     };
   }
   fetchData($scope) {
