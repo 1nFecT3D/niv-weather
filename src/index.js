@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import {techsModule} from './app/techs/index';
+import {citiesModule} from './app/cities/index';
 import 'angular-ui-router';
 import routesConfig from './routes';
 
@@ -12,9 +12,9 @@ import {footer} from './app/footer';
 import './index.less';
 
 angular
-  .module('app', [techsModule, 'ui.router'])
+  .module('app', [citiesModule, 'ui.router'])
   .config(routesConfig)
   .component('app', main)
-  .component('fountainHeader', header)
-  .component('fountainTitle', title)
-  .component('fountainFooter', footer);
+  .component('weatherHeader', header)
+  .component('weatherTitle', title)
+  .component('weatherFooter', footer);

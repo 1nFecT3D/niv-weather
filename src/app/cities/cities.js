@@ -1,4 +1,4 @@
-class TechsController {
+class citiesController {
   /** @ngInject */
   constructor($http, $window, $scope) {
     $scope.loading = true;
@@ -12,12 +12,11 @@ class TechsController {
     };
     this.fetchData($scope);
     $scope.updateWeather = value => {
-      this.idealTemp = value | 21;
-      this.idealHum = 50;
-      this.idealTempRank = value ? {21: 1, 22: 2} : {21: 2, 22: 1};
-      //  TODO:
-      //  implement change for gender.. v_v
-      //  instead clearing and fetching again for now?
+      $scope.loading = true;
+      this.idealTemp = value;
+      this.idealTempRank = (value === 21) ? {21: 1, 22: 2} : {21: 2, 22: 1};
+      this.cities = this.sortData(this.cities);
+      $scope.loading = false;
     };
   }
   fetchData($scope) {
@@ -25,7 +24,7 @@ class TechsController {
       .get('https://api.openweathermap.org/data/2.5/box/city?bbox=-85,180,85,-180,8&appid=7fa7394eb12864ccf726512e191e10d9')
       .then(response => {
         const cities = response.data.list;
-        this.techs = this.sortData(cities);
+        this.cities = this.sortData(cities);
         $scope.loading = false;
       });
   }
@@ -53,7 +52,7 @@ class TechsController {
   }
 }
 
-export const techs = {
-  template: require('./techs.html'),
-  controller: TechsController
+export const cities = {
+  template: require('./cities.html'),
+  controller: citiesController
 };

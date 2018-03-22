@@ -1,0 +1,21 @@
+<div class="cities-container" ng-init="limit = 5">
+  <div class="chooseGender" ng-show="!loading">
+    <a ng-click="updateWeather(21)"><img class="title-logo" src="http://www.myiconfinder.com/uploads/iconsets/256-256-5454771825f1a2c1a95625cfaf368b33-male.png" /></a>
+    <a ng-click="updateWeather(22)" class="female"><img class="title-logo" src="https://vignette.wikia.nocookie.net/k-anime/images/9/99/Female.png" /></a>
+  </div>
+  <div class="spinner" ng-if="loading">
+    <img src="https://loading.io/spinners/dual-ring/lg.dual-ring-loader.gif" alt="">
+  </div>
+  <div class="cities" ng-if="!loading">
+    <div ng-repeat="city in $ctrl.cities | limitTo: limit as results" city="city" ng-class="{cityFirst:$first}">
+      <div ng-class="{city}">
+        <h3 class="city-h3">
+          {{ city.name }}
+        </h3>
+        <p>Temprature: {{city.main.temp }} &#8451;</p>
+        <p>Humidity: {{city.main.humidity }}%</p>
+      </div>
+    </div>
+  </div>
+  <a class="button raised showmore-btn" ng-hide="results.length === $ctrl.cities" ng-click="limit = limit +10">show more...</a>
+</div>
